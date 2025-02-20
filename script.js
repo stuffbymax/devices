@@ -1,28 +1,61 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const devices = [
-        { name: "Acer N19H1", connectivity: ["Wi-Fi", "Bluetooth"] },
-        { name: "HP ProBook 640 G1", connectivity: ["LAN", "Wi-Fi"] },
-        { name: "PS3 Slim CECH-3003A", connectivity: ["Wi-Fi", "Bluetooth"] },
-        { name: "PS3 Slim CECH-2503A", connectivity: ["Wi-Fi", "Bluetooth"] },
-        { name: "Samsung TV UE22H5000AK", connectivity: ["None"] },
-        { name: "HP ProBook 440 G3", connectivity: ["Wi-Fi", "Bluetooth"] },
-        { name: "PS3 Controllers (2x)", connectivity: ["Bluetooth Proprietary"] },
-        { name: "PS4", connectivity: ["Wi-Fi", "Bluetooth"] },
-        { name: "PS2", connectivity: ["LAN (Extension Required)"] },
-        { name: "Xbox One Elite Controller", connectivity: ["Proprietary"] },
-        { name: "Xbox One", connectivity: ["Wi-Fi"] },
-        { name: "Philips GoGear SA060", connectivity: ["None"] },
-        { name: "Toshiba Satellite L650", connectivity: ["Wi-Fi"] },
-        { name: "ASUSTeK X509MA", connectivity: ["Wi-Fi", "Bluetooth"] },
-        { name: "Samsung Galaxy A12", connectivity: ["Wi-Fi"] }
-    ];
+    fetch("devices.json")
+        .then(response => response.json())
+        .then(data => {
+            const devices = data.Devices["My Room"];
+            const container = document.getElementById("device-container");
+            const connectivityCount = {};
+            
+            devices.forEach(device => {
+                const div = document.createElement("div");
+                div.className = "device";
+                div.innerHTML = `<strong>${device.Device}</strong><br>Connectivity: ${device.Connectivity.join(", ")}`;
+                container.appendChild(div);
 
-    const container = document.getElementById("device-container");
-    
-    devices.forEach(device => {
-        const div = document.createElement("div");
-        div.className = "device";
-        div.innerHTML = `<strong>${device.name}</strong><br>Connectivity: ${device.connectivity.join(", ")}`;
-        container.appendChild(div);
-    });
+                device.Connectivity.forEach(type => {
+                    connectivityCount[type] = (connectivityCount[type] || 0) + 1;
+                });
+            });
+
+            // Generate Bar Chart
+            const ctxBar = document.getElementById("connectivityChart").getContext("2d");
+            new Chart(ctxBar, {
+                type: "bar",
+                data: {
+                    labels: Object.keys(connectivityCount),
+                    datasets: [{
+                        label: "Number of Devices",
+                        data: Object.values(connectivityCount),
+                        backgroundColor: "rgba(75, 192, 192, 0.2)",
+                        borderColor: "rgba(75, 192, 192, 1)",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+
+            // Generate Pie Chart
+            const pieCanvas = document.createElement("canvas");
+            pieCanvas.id = "connectivityPieChart";
+            document.body.appendChild(pieCanvas);
+            const ctxPie = pieCanvas.getContext("2d");
+            new Chart(ctxPie, {
+                type: "pie",
+                data: {
+                    labels: Object.keys(connectivityCount),
+                    datasets: [{
+                        data: Object.values(connectivityCount),
+                        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"]
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+        });
 });
