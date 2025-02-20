@@ -1,0 +1,67 @@
+{
+  "Devices": {
+    "My Room": [
+      {
+        "Device": "Acer N19H1",
+        "Connectivity": ["Wi-Fi", "Bluetooth"]
+      },
+      {
+        "Device": "HP ProBook 640 G1",
+        "Connectivity": ["LAN", "Wi-Fi"]
+      },
+      {
+        "Device": "PS3 Slim CECH-3003A",
+        "Connectivity": ["Wi-Fi", "Bluetooth"]
+      },
+      {
+        "Device": "PS3 Slim CECH-2503A",
+        "Connectivity": ["Wi-Fi", "Bluetooth"]
+      },
+      {
+        "Device": "Samsung TV UE22H5000AK",
+        "Connectivity": ["None"]
+      },
+      {
+        "Device": "HP ProBook 440 G3",
+        "Connectivity": ["Wi-Fi", "Bluetooth"]
+      },
+      {
+        "Device": "PS3 Controllers",
+        "Quantity": 2,
+        "Connectivity": ["Bluetooth Proprietary"]
+      },
+      {
+        "Device": "PS4",
+        "Connectivity": ["Wi-Fi", "Bluetooth"]
+      },
+      {
+        "Device": "PS2",
+        "Connectivity": ["LAN (Extension Required)"]
+      },
+      {
+        "Device": "Xbox One Elite Controller",
+        "Connectivity": ["Proprietary"]
+      },
+      {
+        "Device": "Xbox One",
+        "Connectivity": ["Wi-Fi"]
+      },
+      {
+        "Device": "Philips GoGear SA060",
+        "Connectivity": ["None"]
+      },
+      {
+        "Device": "Toshiba Satellite L650",
+        "Connectivity": ["Wi-Fi"]
+      },
+      {
+        "Device": "ASUSTeK X509MA",
+        "Connectivity": ["Wi-Fi", "Bluetooth"]
+      },
+      {
+        "Device": "Samsung Galaxy A12",
+        "Connectivity": ["Wi-Fi"]
+      }
+    ]
+  }
+}
